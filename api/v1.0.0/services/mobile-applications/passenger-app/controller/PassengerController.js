@@ -24,7 +24,7 @@ exports.passengerRegistration = (req, res, next) => {
     res.status(500).json({
       message: 'sudu mahaththaya user registration eke aulak..'
     });
-  });
+  });  
 };
 
 // passenger login
@@ -69,5 +69,60 @@ exports.passengerLogin = (req, res, next) => {
 
 //passenger update
 exports.passengerUpdate = (req, res, next) => {
-  
-}
+  Passenger.updatePassenger({
+    passenger_mail: req.body.passenger_mail
+  },{$set:req.body} ).then((result) => {
+    res.status(200).json({
+      message: 'Passenger Updated'
+    });
+  }).catch((error) => {
+    res.status(500).json({
+      message: 'Passenger Update failed'
+    });
+  });
+};
+
+// passenger password reset send mail to the user
+
+exports.forgotPassword = (req, res, next) => {
+  Passenger.searchPassenger({
+      passenger_mail : req.body.passenger_mail
+  }).then((foundPassenger) => {
+      if (foundPassenger != null) {
+         Mailer.sendMail({
+             to:foundPassenger.passenger_mail,
+            verification:foundPassenger.verification_code
+         }).then((result) => {
+             res.status(200).json({
+                 message: 'Reset Password token sent to the Passenger'
+             });
+         }).catch((error) => {
+             res.status(500).json({
+                 message: 'Reset Password Failed'
+             });
+         });
+      } else {
+          console.log('User not found!');
+          res.status(401).json({
+              message: 'User Not Found!'
+          });
+      }
+  });
+};
+
+// update password
+
+exports.passwordUpdate = (req, res, next) => {
+Passenger.updatePassword({
+  passenger_mail: req.body.passenger_mail
+},{$set:req.body} ).then((result) => {
+      res.status(200).json({
+          message: 'Password Updated'
+      });
+}).catch((error) => {
+  res.status(500).json({
+      message: 'Password Update Failed'
+  });
+});
+};
+

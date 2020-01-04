@@ -29,4 +29,16 @@ exports.updatePassenger = (query1, passenger_object) => {
       reject(error)
     });
   });
-}
+};
+
+exports.updatePassword = (query1, driver_object) => {
+  return new Promise((resolve, reject) => {
+      Passenger_Entity.findOneAndUpdate(query1, driver_object).then((result) => {
+          resolve(result);
+      }).catch((error) => {
+          reject(error);
+      })
+  });
+};
+
+
