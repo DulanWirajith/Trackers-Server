@@ -21,6 +21,26 @@ exports.searchDriver = (driver_mail) => {
     });
 };
 
+exports.getDriver = (query1) => {
+    return new Promise((resolve, reject) => {
+      Driver_Entity.findOne(query1).then((result) => {
+        resolve(result);
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  };
+  
+  exports.getAllDrivers = () => {
+    return new Promise((resolve, reject) => {
+      Driver_Entity.find({}).then((result) => {
+        resolve(result);
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  };
+
 exports.updateDriver = (query1, driver_object) => {
     return new Promise((resolve, reject) => {
         Driver_Entity.findOneAndUpdate(query1, driver_object).then((result) => {

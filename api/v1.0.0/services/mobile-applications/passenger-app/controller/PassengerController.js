@@ -67,7 +67,7 @@ exports.passengerLogin = (req, res, next) => {
   });
 };
 
-//passenger update
+// passenger update
 exports.passengerUpdate = (req, res, next) => {
   Passenger.updatePassenger({
     passenger_mail: req.body.passenger_mail
@@ -78,6 +78,40 @@ exports.passengerUpdate = (req, res, next) => {
   }).catch((error) => {
     res.status(500).json({
       message: 'Passenger Update failed'
+    });
+  });
+};
+
+// get passenger
+exports.getPassenger = (req, res, next) => {
+  Passenger.getPassenger({
+    passenger_mail : req.body.passenger_mail
+  }).then((result) => {
+    console.log(result);
+    res.status(200).json({
+      message: result
+    });
+  }).catch((error) => {
+    console.log(error);
+    res.status(500).json({
+      message: 'Get Passenger Failed!'
+    });
+  });
+};
+
+// get all passengers
+
+exports.getPassengers = (req, res, next) => {
+  Passenger.getAllPassengers({
+  }).then((result) => {
+    console.log(result);
+    res.status(200).json({
+      message: result
+    });
+  }).catch((error) => {
+    console.log(error);
+    res.status(500).json({
+      message: 'Get Passenger Failed!'
     });
   });
 };

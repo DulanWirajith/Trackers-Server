@@ -84,6 +84,40 @@ exports.driverUpdate = (req, res, next) => {
     });
 };
 
+// get driver
+exports.getDriver = (req, res, next) => {
+    Driver.getDriver({
+      driver_mail : req.body.driver_mail
+    }).then((result) => {
+      console.log(result);
+      res.status(200).json({
+        message: result
+      });
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        message: 'Get Driver Failed!'
+      });
+    });
+  };
+  
+  // get all drivers
+  
+  exports.getDrivers = (req, res, next) => {
+    Driver.getAllDrivers({
+    }).then((result) => {
+      console.log(result);
+      res.status(200).json({
+        message: result
+      });
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        message: 'Get Driver Failed!'
+      });
+    });
+  };  
+
 // reset password email send to the user
 
 exports.forgotPassword = (req, res, next) => {

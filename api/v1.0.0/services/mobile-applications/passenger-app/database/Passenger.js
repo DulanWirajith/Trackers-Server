@@ -21,12 +21,32 @@ exports.searchPassenger = (passenger_mail) => {
   });
 };
 
+exports.getPassenger = (query1) => {
+  return new Promise((resolve, reject) => {
+    Passenger_Entity.findOne(query1).then((result) => {
+      resolve(result);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+};
+
+exports.getAllPassengers = () => {
+  return new Promise((resolve, reject) => {
+    Passenger_Entity.find({}).then((result) => {
+      resolve(result);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+};
+
 exports.updatePassenger = (query1, passenger_object) => {
   return new Promise((resolve, reject) => {
     Passenger_Entity.findOneAndUpdate(query1, passenger_object).then((result) => {
       resolve(result)
     }).catch((error) => {
-      reject(error)
+      reject(error);
     });
   });
 };
@@ -40,5 +60,7 @@ exports.updatePassword = (query1, driver_object) => {
       })
   });
 };
+
+
 
 
