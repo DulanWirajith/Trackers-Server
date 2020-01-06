@@ -4,6 +4,8 @@ const passengerController = require('./../services/mobile-applications/passenger
 const driverController = require('./../services/mobile-applications/driver-app/controller/DriverController');
 const ownerController = require('./../services/admin-portal/controller/OwnerController');
 const busesController = require('./../services/admin-portal/controller/BusesController');
+const busLocationController = require('./../services/admin-portal/controller/BusLocationController');
+const reviewsController = require('./../services/mobile-applications/passenger-app/controller/ReviewsController');
 
 // passenger routes
 router.post('/registration', passengerController.passengerRegistration);
@@ -37,5 +39,17 @@ router.post('/busregistration', busesController.busRegistration);
 router.put('/updatebus', busesController.busUpdate);
 router.get('/getbus', busesController.getBus);
 router.get('/getallbuses', busesController.getBuses);
+
+// Real time Bus Location routes
+
+router.post('/savelocation', busLocationController.saveLocations);
+router.get('/getlocations', busLocationController.getLocations);
+
+// Passenger Reviews routes
+
+router.post('/savereviews', reviewsController.saveReviews);
+router.put('/updatereview', reviewsController.reviewUpdate);
+router.get('/getreview', reviewsController.getReview);
+router.get('/getallreviews', reviewsController.getallReviews);
 
 module.exports = router;

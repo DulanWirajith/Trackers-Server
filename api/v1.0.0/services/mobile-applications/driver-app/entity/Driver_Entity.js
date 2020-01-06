@@ -49,13 +49,9 @@ const Driver_Entity = mongoose.Schema({
   contact_no: {
     type: String
   },
-  feedback_count: {
+  overall_driver_score: {
     type: Number,
-    default: 0
-  },
-  driver_score: {
-    type: Number,
-    default: 0
+    default: 100
   },
   blocked: {
     type: Boolean,

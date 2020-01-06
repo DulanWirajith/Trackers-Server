@@ -11,6 +11,9 @@ const Bus_Entity = mongoose.Schema({
     },
     route_no: {
         type: String
+    },   
+    bus_type: {
+        type: String
     },
     owner_mail: {
         type: String,
@@ -20,14 +23,6 @@ const Bus_Entity = mongoose.Schema({
     },
     location: {
         type: String
-    },
-    feedback_count: {
-        type: Number,
-        default: 0
-    },
-    bus_score: {
-        type: Number,
-        default: 0
     },
     created_at: {
       type: Date,

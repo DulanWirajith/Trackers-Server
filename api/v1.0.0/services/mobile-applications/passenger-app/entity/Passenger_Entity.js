@@ -6,8 +6,6 @@ const randomToken = require('rand-token').generator({
   chars: '0-9'
 });
 
-
-
 const Passenger_Entity = mongoose.Schema({
   // account_type: { type: String },
   first_name: {
