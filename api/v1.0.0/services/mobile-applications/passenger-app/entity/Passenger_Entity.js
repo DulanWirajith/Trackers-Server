@@ -22,9 +22,6 @@ const Passenger_Entity = mongoose.Schema({
     unique: true,
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   },
-  gender: {
-    type: String
-  },
   password: {
     type: String
   },
@@ -37,9 +34,6 @@ const Passenger_Entity = mongoose.Schema({
   },
   // verification_end: { type: Date, default: new Date(+new Date() + 30 * 24 * 60 * 60 * 1000) },
   // promotion_code: { type: String },
-  birthday: {
-    type: String
-  },
   contact_no: {
     type: String
   },
