@@ -10,6 +10,13 @@ const socket = require('./connection/SocketConnection')(io);
 const v1Routes = require('./api/v1.0.0/routes/v1_routes');
 const database = require('./connection/DBConnection');
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+  next();
+});
+
 app.use(body_parser.urlencoded({
   extended: false,
   limit: '50mb'
