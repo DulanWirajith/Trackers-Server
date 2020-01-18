@@ -32,6 +32,9 @@ exports.passengerRegistration = (req, res, next) => {
 
 // passenger login
 exports.passengerLogin = (req, res, next) => {
+  console.log(req.body.passenger_mail);
+  console.log(req.body.password);
+
   Passenger.searchPassenger({
     passenger_mail: req.body.passenger_mail
   }).then((loggedPassenger) => {
@@ -42,33 +45,39 @@ exports.passengerLogin = (req, res, next) => {
         console.log(isPasswordMatch);
         if (isPasswordMatch) {
           res.status(200).json({
-            message: 'Sudu mahaththaya Passenger ta log wenna denna...'
+            message: 'Sudu mahaththaya Passenger ta log wenna denna...',
+            isUserRight : true
           });
         } else {
           res.status(401).json({
-            message: 'Sudu mahaththaya password match wenne nee...'
+            message: 'Sudu mahaththaya password match wenne nee...',
+            isUserRight : false
           });
         }
       }).catch((error) => {
         console.log(error);
         res.status(401).json({
-          message: 'Sudu mahaththaya server eke aulak. password check karanna une nee...'
+          message: 'Sudu mahaththaya server eke aulak. password check karanna une nee...',
+          isUserRight : false
         });
       });
 
     } else {
       console.log("user not found");
       res.status(401).json({
-        message: 'sudu mahaththaya Authantication failed. User kenek eththe nee'
+        message: 'sudu mahaththaya Authantication failed. User kenek eththe nee',
+        isUserRight : false
       });
     }
   }).catch((error) => {
     console.log(error);
     res.status(500).json({
-      message: 'sudu mahaththaya user login eke aulak..'
+      message: 'sudu mahaththaya user login eke aulak..',
+      isUserRight : false
     });
   });
 };
+
 
 // passenger update
 exports.passengerUpdate = (req, res, next) => {
