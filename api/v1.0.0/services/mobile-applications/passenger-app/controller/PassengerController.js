@@ -44,10 +44,26 @@ exports.passengerLogin = (req, res, next) => {
       loggedPassenger.checkPassword(req.body.password).then((isPasswordMatch) => {
         console.log(isPasswordMatch);
         if (isPasswordMatch) {
-          res.status(200).json({
-            message: 'Sudu mahaththaya Passenger ta log wenna denna...',
-            isUserRight : true
+          Passenger.getPassenger({
+            passenger_mail: req.body.passenger_mail
+          }).then((passenger_details)=>{
+            res.status(200).json({
+              message: 'Sudu mahaththaya Passenger ta log wenna denna...',
+              isUserRight : true,
+              passengerID:passenger_details._id,
+              passengerFirstName:passenger_details.first_name,
+              passengerLastName:passenger_details.last_name,
+              passengerMail:passenger_details.passenger_mail,
+              passengerContact:passenger_details.contact_no,
+              passengerIsVirtify:passenger_details.verified
+
+
+
+            });
+          }).catch((error)=>{
+
           });
+          
         } else {
           res.status(401).json({
             message: 'Sudu mahaththaya password match wenne nee...',
