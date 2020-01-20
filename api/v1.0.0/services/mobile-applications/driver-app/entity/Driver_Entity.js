@@ -25,9 +25,9 @@ const Driver_Entity = mongoose.Schema({
     unique: true,
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   },
-  gender: {
-    type: String
-  },
+  // gender: {
+  //   type: String
+  // },
   password: {
     type: String
   },

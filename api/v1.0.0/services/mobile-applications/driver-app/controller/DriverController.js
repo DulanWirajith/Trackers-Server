@@ -40,9 +40,26 @@ exports.driverLogin = (req, res, next) => {
             loggedDriver.checkPassword(req.body.password).then((isPasswordMatch) => {
                 console.log(isPasswordMatch);
                 if (isPasswordMatch) {
-                    res.status(200).json({
-                        message: 'Driver can log in'
+                    Driver.getDriver({
+                        driver_mail: req.body.driver_mail
+                    }).then((driver_details)=>{
+                        res.status(200).json({
+                            message: 'Driver can log in',
+                            isUserRight : true,
+                            driverID:driver_details._id,
+                            driverFirstName:driver_details.first_name,
+                            driverLastName:driver_details.last_name,
+                            driverMail:driver_details.driver_mail,
+                            driverContact:driver_details.contact_no,
+                            driverIsVirtify:driver_details.verified,
+                            driverLicenceNumber:driver_details.licence_number,
+                            driverOverAllScore:driver_details.overall_driver_score
+
+                        });
+                    }).catch((error)=>{
+
                     });
+                    
                 } else {
                     res.status(401).json({
                         message: 'Password mismatch'
