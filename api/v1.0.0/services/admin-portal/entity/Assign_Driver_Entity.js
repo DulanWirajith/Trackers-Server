@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
 
 const AssignDriverEntity = mongoose.Schema({
-    bus_owner_mail: {
+    driver_licence_number: {
         type: String,
         required: true,
-    },
-    driver_mail: {
-        type: String,
-        required: true,
+        unique: true
     },
     bus_no: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
-    overall_driver_score: {
-        type: Number,
-        default: 100
-    },
+    date: {
+        type: String,
+        required: true,
+        unique: true
+    }
 
 })
 

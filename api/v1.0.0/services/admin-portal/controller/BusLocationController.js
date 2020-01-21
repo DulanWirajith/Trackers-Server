@@ -1,8 +1,12 @@
 const Locations = require('./../database/Locations');
+const DriverEntity = require('./../../mobile-applications/driver-app/entity/Driver_Entity');
+const Driver = require('./../../mobile-applications/driver-app/database/Driver');
 
 // save locations
 
 exports.saveLocations = (req, res, next) => {
+    // Driver.getDriver({
+    // })
     Locations.saveLocation((req.body)).then((result) => {
         console.log('Location Added!');
         res.status(200).json({
