@@ -6,12 +6,6 @@ const Bus_Realtime_Location = mongoose.Schema({
         required: true,
         unique: true,
     },
-    driver_mail: {
-        type: String,
-        required: true,
-        unique: true,
-        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-      },
     longitude: {
         type: Number,
         required: true,
@@ -37,6 +31,9 @@ const Bus_Realtime_Location = mongoose.Schema({
     road_condition: {
         type: String,
         timestamps: true
+    },
+    time_duration: {
+        type: String
     }
     // date: {
     //     type: Date,

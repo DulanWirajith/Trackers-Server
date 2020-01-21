@@ -17,6 +17,6 @@ const AssignDriverEntity = mongoose.Schema({
         unique: true
     }
 
-})
+});
 
 module.exports = mongoose.model('assigndriver', AssignDriverEntity);
