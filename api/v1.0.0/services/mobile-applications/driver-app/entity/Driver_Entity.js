@@ -15,7 +15,7 @@ const Driver_Entity = mongoose.Schema({
   },
   // business_name: { type: String },
   licence_number: {
-    type:String,
+    type: String,
     required: true,
     unique: true
 },
@@ -47,9 +47,13 @@ const Driver_Entity = mongoose.Schema({
     type: Number
   },
   contact_no: {
-    type: String
+    type: Number
   },
-  overall_driver_score: {
+  driver_time_rating: {
+    type: Number,
+    default: 100
+  },
+  driver_descipline: {
     type: Number,
     default: 100
   },

@@ -6,6 +6,7 @@ const ownerController = require('./../services/admin-portal/controller/OwnerCont
 const busesController = require('./../services/admin-portal/controller/BusesController');
 const busLocationController = require('./../services/admin-portal/controller/BusLocationController');
 const reviewsController = require('./../services/mobile-applications/passenger-app/controller/ReviewsController');
+const assignmentController = require('./../services/admin-portal/controller/AssignmentController');
 
 // passenger routes
 router.post('/registration', passengerController.passengerRegistration);
@@ -51,5 +52,12 @@ router.post('/savereviews', reviewsController.saveReviews);
 router.put('/updatereview', reviewsController.reviewUpdate);
 router.get('/getreview', reviewsController.getReview);
 router.get('/getallreviews', reviewsController.getallReviews);
+
+// Driver and Bus Assignment Routes
+
+router.post('/saveassignment', assignmentController.createAssignment);
+router.put('/updateassignment', assignmentController.assignmentUpdate);
+router.get('/getassignment', assignmentController.getAssignment);
+router.get('/getallassignments', assignmentController.getAssignments);
 
 module.exports = router;

@@ -33,7 +33,7 @@ app.use('/api/v1.0.0', v1Routes);
 app.use((req, res, next) => {
   // next eken thamai eelanga middleware ekata call karanne
   // res.send('from express server bro!!!');
-  const error = new Error('Routes hariyata daanna sudu mahaththayaa... Server ekata mukuth karanna bee oyaata... :-)');
+  const error = new Error('Incorrect Routes!');
   error.status = 500;
   next(error);
 });
