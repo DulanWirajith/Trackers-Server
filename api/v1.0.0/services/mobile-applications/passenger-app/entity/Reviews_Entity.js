@@ -1,21 +1,18 @@
 const mongoose = require('mongoose');
 
 const Reviews_Entity = mongoose.Schema({
+
     passenger_mail: {
         type: String,
         required: true,
-        unique: true,
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
     reviewed_date: {
         type: Date,
-
         required: true
-
     },
     bus_number: {
         type: String,
-        unique: true,
         required: true
 
     },
