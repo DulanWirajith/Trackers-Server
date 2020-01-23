@@ -37,9 +37,23 @@ exports.ownerLogin = (req, res, next) => {
             loggedOwner.checkPassword(req.body.password).then((isPasswordMatch) => {
                 console.log(isPasswordMatch);
                 if (isPasswordMatch) {
-                    res.status(200).json({
-                        messege: 'Owner can log in'
+                    Owner.getOwner({
+                        owner_mail:req.body.owner_mail
+                    }).then((owner_details)=>{
+                        res.status(200).json({
+                            messege: 'Owner can log in',
+                            isUserRight: true,
+                            ownerID:owner_details._id,
+                            ownerfirstName:owner_details.first_name,
+                            ownerlastName:owner_details.last_name,
+                            ownerMail:owner_details.owner_mail,
+                            ownerContact:owner_details.contact_no,
+                            isOwnerVirtify:owner_details.verified
+                        });
+                    }).catch((error)=>{
+
                     });
+                    
                 } else {
                     res.status(401).json({
                         messege: 'Password Mismatch'

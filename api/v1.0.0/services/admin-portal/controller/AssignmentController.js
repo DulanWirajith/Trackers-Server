@@ -3,17 +3,35 @@ const Assignments = require('./../database/AssignDriver');
 // save assignment
 
 exports.createAssignment = (req, res, next) => {
-    Assignments.saveAssignDriver((req.body)).then((result) => {
-        console.log('Assignment Addded');
-        res.status(200).json({
-            messege: 'Assignment Added!'
-        });
-    }).catch((error) => {
-        console.log(error);
+    Assignments.getAssignment({
+      driver_licence_number: req.body.driver_licence_number,
+      bus_no: req.body.bus_no,
+      date: req.body.date
+    }).then((alreadyAddedDriver) => {
+      if (alreadyAddedDriver == null) {
+        Assignments.saveAssignDriver((req.body)).then((result) => {
+          console.log(result);
+          console.log('Assignment Added!');
+          res.status(200).json({
+              messege: 'Assignment Added!'
+          });
+      }).catch((error) => {
+          console.log(error);
+          res.status(500).json({
+              messege: 'Assignment Failed'
+          });
+      });
+      } else {
+        console.log('Already assigned Driver');
         res.status(500).json({
-            messege: 'Assignment Failed'
+          message: 'You have already assigend this driver. Assignment Failed'
         });
-    });
+      }
+    }).catch((error) => {
+      res.status(500).json({
+        message: 'Error!'
+      });
+    });    
 };
 
 // update assignment
