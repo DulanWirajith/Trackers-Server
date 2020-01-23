@@ -28,7 +28,7 @@ const Owner_Entity = mongoose.Schema({
     },
     verified: {
         type: Boolean,
-    default: false
+        default: false
     },
     date_of_birth: {
         type: String
