@@ -15,6 +15,10 @@ const Bus_Entity = mongoose.Schema({
     bus_type: {
         type: String
     },
+    bus_condition: {
+        type: Number,
+        default: 100
+    },
     owner_mail: {
         type: String,
         required: true,

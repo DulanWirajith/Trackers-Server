@@ -16,13 +16,12 @@ const Bus_Realtime_Location = mongoose.Schema({
         required: true,
         timestamps: true
     },
+    distance: {
+        type: Number
+    },
     speed_of_bus: {
         type: Number,
         timestamps: true
-    },
-    overall_driver_score: {
-        type: Number,
-        default: 100
     },
     weather: {
         type: String,
@@ -32,14 +31,17 @@ const Bus_Realtime_Location = mongoose.Schema({
         type: String,
         timestamps: true
     },
+    date: {
+        type: Date,
+        required: true,
+        unique: true
+    },
+    bus_time: {
+        type: String
+    },
     time_duration: {
         type: String
-    }
-    // date: {
-    //     type: Date,
-    //     required: true,
-    //     unique: true
-    // },
+    },
 
 });
 

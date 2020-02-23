@@ -4,8 +4,12 @@ const AssignDriver = require('./../database/AssignDriver');
 // save locations
 
 exports.saveLocations = (req, res, next) => {
-    AssignDriver.getAssignment({
-        bus_no: req.body.bus_no
+    Location.saveLocations({
+        bus_no: req.body.bus_no,
+        longitude: req.body.longitude,
+        latitude: req.body.latitude,
+        date: req.body.date,
+        bus_time: req.body.bus_time
     }).then((result) => {
         Locations.getLocations({
             speed_of_bus: (req.body.longitude + req.body.latitude) / req.body.time_duration
@@ -40,7 +44,13 @@ exports.getLocations = (req, res, next) => {
     }).catch((error) => {
         console.log(error);
         res.status(500).json({
-            messege: 'Get bus locations failed!'
+            messege: 'Get bus location details failed!'
         });
     });
+};
+
+// function to calculate distance
+
+exports.calculateDistance = (req, res, next) => {
+
 };
