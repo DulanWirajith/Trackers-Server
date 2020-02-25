@@ -3,19 +3,24 @@ const mongoose = require('mongoose');
 const Bus_Realtime_Location = mongoose.Schema({
     bus_no: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
     },
-    longitude: {
-        type: Number,
-        required: true,
-        timestamps: true
+    current_location: {
+        latitude: {
+            type: Number
+        },
+        longitude: {
+            type: Number
+        }
     },
-    latitude: {
-        type: Number,
-        required: true,
-        timestamps: true
-    },
+    previous_location: {
+        latitude: {
+            type: Number
+        },
+        longitude: {
+            type: Number
+        }
+    },    
     distance: {
         type: Number
     },
@@ -33,8 +38,7 @@ const Bus_Realtime_Location = mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true,
-        unique: true
+        required: true
     },
     bus_time: {
         type: String
