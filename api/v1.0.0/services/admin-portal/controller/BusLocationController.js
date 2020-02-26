@@ -1,49 +1,57 @@
 const Locations = require('./../database/Locations');
-const { getDistance, convertDistance } = require('geolib');
+const { getDistance, convertDistance, getSpeed, convertSpeed } = require('geolib');
 const AssignDriver = require('./../database/AssignDriver');
 
 // save locations
-// console.log('hello');
-// console.log(this.getLocation.previous_location.latitude);
 
 exports.saveLocations = (req, res, next) => {
-    const current_location = {
-        latitude: req.body.current_location.latitude,
-        longitude: req.body.current_location.longitude
-    };
-
-    // me previous location eka database eken ganna widiha poddak balapan. meka weradiy.
-    const pre_location = {
-        latitude: this.getLocation.previous_location.latitude,
-        longitude: this.getLocation.previous_location.longitude
-    };
-    
-    let distance = convertDistance(getDistance(pre_location, current_location, 1000), 'km');
-    // console.log(convertDistance(distance, 'km'));
-    Locations.saveLocation({
-        bus_no: req.body.bus_no,
-        distance: distance,
-        previous_location: req.body.current_location,       // current location eka save wenne previous eka widihata
-        weather: req.body.weather,
-        road_condition: req.body.road_condition,
-        date: req.body.date
-    }).then((result) => {
-                console.log('Location Added!');
-                res.status(200).json({
-                    messege: 'Location Added!'
+    Locations.getLocation(c => c.bus_no === req.body.bus_no).then((result) => {
+        // console.log(result);
+        const pre_location = {
+            latitude: result.current_location.latitude,
+            longitude: result.current_location.longitude
+        };
+        const current_location = {
+            latitude: req.body.current_location.latitude,
+            longitude: req.body.current_location.longitude
+        };
+        // console.log(pre_location);
+        // console.log(current_location);
+        let distance = convertDistance(getDistance(pre_location, current_location, 1000), 'km');
+        // console.log(convertDistance(distance, 'km'));
+        Locations.saveLocation({
+            bus_no: req.body.bus_no,
+            distance: distance,
+            current_location: req.body.current_location,
+            weather: req.body.weather,
+            road_condition: req.body.road_condition,
+            bus_time: Date.now()
+        }).then((result) => {
+                    console.log('Location Added!');
+                    res.status(200).json({
+                        messege: 'Location Added!'
+                    });
+                }).catch((error) => {
+                    console.log(error);
+                    res.status(500).json({
+                        messege: 'Location Added Failed'
+                    });
                 });
-            }).catch((error) => {
-                console.log(error);
-                res.status(500).json({
-                    messege: 'Location Added Failed'
-                });
-            });     
-    };
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).json({
+            messege: 'get latest bus location failed'
+        });
+    });    
+         
+};
     
 // get latest location
 
 exports.getLocation = (req, res, next) => {
-    Locations.getLocation({}).then((result) => {
+    Locations.getLocation({
+        // bus_no: req.body.bus_no
+    }).then((result) => {
         console.log(result);
         res.status(200).json({
             messege: result
