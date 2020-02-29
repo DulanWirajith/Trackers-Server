@@ -115,7 +115,7 @@ exports.passengerUpdate = (req, res, next) => {
 // get passenger
 exports.getPassenger = (req, res, next) => {
   Passenger.getPassenger({
-    passenger_mail: req.body.passenger_mail
+    passenger_mail: req.params.passenger_mail
   }).then((result) => {
     console.log(result);
     res.status(200).json({

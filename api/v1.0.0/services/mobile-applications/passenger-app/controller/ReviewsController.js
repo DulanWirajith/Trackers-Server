@@ -12,18 +12,18 @@ exports.saveReviews = (req, res, next) => {
       Reviews.saveReviews((req.body)).then((result) => {
         console.log('Review Added!');
         res.status(200).json({
-          messege: 'Review Added!'
+          message: 'Review Added!'
         });
       }).catch((error) => {
         console.log(error);
         res.status(500).json({
-          messege: 'Review Added Failed'
+          message: 'Review Added Failed'
         });
       });
     }else{
       console.log("already added review");
       res.status(500).json({
-        messege: 'You already added a review. Review Added Failed'
+        message: 'You already added a review. Review Added Failed'
       });
     }
   }).catch((error)=>{

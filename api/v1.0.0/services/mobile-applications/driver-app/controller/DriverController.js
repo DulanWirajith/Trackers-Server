@@ -104,7 +104,7 @@ exports.driverUpdate = (req, res, next) => {
 // get driver
 exports.getDriver = (req, res, next) => {
     Driver.getDriver({
-      driver_mail : req.body.driver_mail
+      driver_mail : req.params.driver_mail
     }).then((result) => {
       console.log(result);
       res.status(200).json({
