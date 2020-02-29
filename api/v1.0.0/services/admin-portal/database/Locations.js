@@ -13,9 +13,9 @@ exports.saveLocation = (location_object) => {
 
 // get latest location
 
-exports.getLocation = () => {
+exports.getLocation = (bus_no) => {
     return new Promise((resolve, reject) => {
-        Bus_Realtime_Location.findOne().sort({_id: -1}).select({current_location: -1})
+        Bus_Realtime_Location.findOne(bus_no).sort({_id: -1})
         .then((result) => {
             resolve(result);
         }).catch((error) => {

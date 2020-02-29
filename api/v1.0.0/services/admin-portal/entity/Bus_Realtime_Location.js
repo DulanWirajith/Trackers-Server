@@ -12,7 +12,7 @@ const Bus_Realtime_Location = mongoose.Schema({
         longitude: {
             type: Number
         }
-    },    
+    },
     distance: {
         type: Number
     },
@@ -33,7 +33,7 @@ const Bus_Realtime_Location = mongoose.Schema({
         default: new Date()
     },
     bus_time: {
-        type: Date
+        type: String
     },
     time_duration: {
         type: String
