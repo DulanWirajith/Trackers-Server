@@ -24,6 +24,19 @@ exports.getLocation = () => {
     });
 };
 
+// get latest location for android
+
+exports.getLatestLocation = (bus_no) => {
+    return new Promise((resolve, reject) => {
+        Bus_Realtime_Location.findOne(bus_no).sort({_id: -1}).select({current_location: -1})
+        .then((result) => {
+            resolve(result);
+        }).catch((error) => {
+            reject(error);
+        });
+    });
+};
+
 // get all locations
 
 exports.getLocations = () => {

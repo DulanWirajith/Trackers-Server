@@ -6,7 +6,7 @@ const AssignDriver = require('./../database/AssignDriver');
 
 exports.saveLocations = (req, res, next) => {
     Locations.getLocation(c => c.bus_no === req.body.bus_no).then((result) => {
-        // console.log(result);
+        console.log(result);
         const pre_location = {
             latitude: result.current_location.latitude,
             longitude: result.current_location.longitude
@@ -80,6 +80,25 @@ exports.getLocations = (req, res, next) => {
     });
 };
 
+// get latest location for android request
+
+exports.getLatestLocation = (req, res, next) => {
+    Locations.getLatestLocation({
+        bus_no: req.params.bus_no
+    }).then((result) => {
+        console.log(result);
+        res.status(200).json({
+            latitude:result.current_location.latitude,
+            longitude:result.current_location.longitude
+            // messege: result
+        });
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).json({
+            messege: 'get latest bus location failed'
+        });
+    });
+};
 
 // to get weather
 

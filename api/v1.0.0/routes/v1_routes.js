@@ -46,13 +46,14 @@ router.get('/getallbuses', busesController.getBuses);
 router.post('/savelocation', busLocationController.saveLocations);
 router.get('/getlocations', busLocationController.getLocations);
 router.get('/getlatestlocation', busLocationController.getLocation);
+router.get('/getlatestlocationtoandroid/:bus_no', busLocationController.getLatestLocation)
 
 // Passenger Reviews routes
 
 router.post('/savereviews', reviewsController.saveReviews);
 router.put('/updatereview', reviewsController.reviewUpdate);
-router.get('/getreview', reviewsController.getReview);
-router.get('/getallreviews', reviewsController.getallReviews);
+router.get('/getreview/:passenger_mail', reviewsController.getReview);
+router.get('/getallreviews/:passenger_mail', reviewsController.getallReviews);
 
 // Driver and Bus Assignment Routes
 
