@@ -54,16 +54,16 @@ exports.reviewUpdate = (req, res, next) => {
 // get one review
 exports.getReview = (req, res, next) => {
   Reviews.getReview({
-    passenger_mail: req.body.passenger_mail
+    passenger_mail: req.params.passenger_mail
   }).then((result) => {
     console.log(result);
     res.status(200).json({
-      message: result
+      bus_number: result.bus_number
     });
   }).catch((error) => {
     console.log(error);
     res.status(500).json({
-      message: 'Get Review Failed!'
+      reviews: 'Get Review Failed!'
     });
   });
 };
@@ -71,15 +71,17 @@ exports.getReview = (req, res, next) => {
 // get all reviews
 
 exports.getallReviews = (req, res, next) => {
-  Reviews.getAllReviews({}).then((result) => {
+  Reviews.getAllReviews({
+    passenger_mail: req.params.passenger_mail
+  }).then((result) => {
     console.log(result);
     res.status(200).json({
-      messege: result
+      reviews: result
     });
   }).catch((error) => {
     console.log(error);
     res.status(500).json({
-      messege: 'Get all reviews failed!'
+      message: 'Get all reviews failed!'
     });
   });
 };

@@ -50,8 +50,8 @@ router.get('/getlocations', busLocationController.getLocations);
 
 router.post('/savereviews', reviewsController.saveReviews);
 router.put('/updatereview', reviewsController.reviewUpdate);
-router.get('/getreview', reviewsController.getReview);
-router.get('/getallreviews', reviewsController.getallReviews);
+router.get('/getreview/:passenger_mail', reviewsController.getReview);
+router.get('/getallreviews/:passenger_mail', reviewsController.getallReviews);
 
 // Driver and Bus Assignment Routes
 
