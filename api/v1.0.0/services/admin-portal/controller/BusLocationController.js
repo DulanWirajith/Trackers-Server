@@ -13,7 +13,7 @@ exports.saveLocations = (req, res, next) => {
   Locations.getLocation({
     bus_no: req.body.bus_no
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
     const pre_location = {
       latitude: result.current_location.latitude,
       longitude: result.current_location.longitude,
@@ -26,6 +26,7 @@ exports.saveLocations = (req, res, next) => {
       longitude: req.body.current_location.longitude,
       time: req.body.bus_time
     };
+    console.log(current_location);
 
     var pre_time = pre_location.time.split(":");
     // console.log(pre_time);
@@ -36,19 +37,23 @@ exports.saveLocations = (req, res, next) => {
     var now_time_seconds = now_time[0] * 60 * 60 + now_time[1] * 60 + now_time[2] * 1;
     // console.log(now_time_seconds);
 
-    var time_varience = now_time_seconds - pre_time_seconds;
-    console.log(time_varience);
+    var time_varience_s = now_time_seconds - pre_time_seconds;
+    // console.log(time_varience);
     // console.log(pre_location);
     // console.log(current_location);
-    let distance = convertDistance(getDistance(pre_location, current_location, 1000), 'km');
-    // console.log(convertDistance(distance, 'km'));
+    let distance_m = getDistance(pre_location, current_location, 1000);
+    let distance_km = convertDistance(distance_m, 'km');
+    let bus_speed = distance_m / time_varience_s;
+    let bus_speed_kmh = convertSpeed(bus_speed, 'kmh');
+    // console.log(bus_speed_kmh);
     Locations.saveLocation({
       bus_no: req.body.bus_no,
-      distance: distance,
+      distance: distance_km,
       current_location: req.body.current_location,
       weather: req.body.weather,
       road_condition: req.body.road_condition,
-      bus_time: req.body.bus_time
+      bus_time: req.body.bus_time,
+      speed_of_bus: bus_speed_kmh
     }).then((result) => {
       console.log('Location Added!');
       res.status(200).json({
