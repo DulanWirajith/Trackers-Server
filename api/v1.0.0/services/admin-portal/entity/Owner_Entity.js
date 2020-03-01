@@ -43,6 +43,9 @@ const Owner_Entity = mongoose.Schema({
     created_at: {
       type: Date,
       default: new Date()
+    },
+    address:{
+      type: String
     }
 
 });
@@ -63,8 +66,8 @@ Owner_Entity.pre('save', function(next) {
       next();
     });
   });
-  
-  
+
+
   Owner_Entity.methods.checkPassword = function(userPassword) {
     return new Promise((resolve, reject) => {
       encryption.decryptPassword(userPassword, this.password).then((authenticate) => {
