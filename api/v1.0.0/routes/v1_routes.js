@@ -46,7 +46,7 @@ router.get('/getallbuses', busesController.getBuses);
 router.post('/savelocation', busLocationController.saveLocations);
 router.get('/getlocations', busLocationController.getLocations);
 router.get('/getlatestlocation', busLocationController.getLocation);
-router.get('/getlatestlocationtoandroid/:bus_no', busLocationController.getLatestLocation)
+router.get('/getlatestlocationtoandroid/:bus_no', busLocationController.getLatestLocation);
 
 // Passenger Reviews routes
 
