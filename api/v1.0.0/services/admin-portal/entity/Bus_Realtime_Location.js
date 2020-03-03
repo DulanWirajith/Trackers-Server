@@ -21,8 +21,8 @@ const Bus_Realtime_Location = mongoose.Schema({
         timestamps: true
     },
     weather: {
-        type: String,
-        timestamps: true
+        temperature: Number,
+        temperatureDesc: String
     },
     road_condition: {
         type: String,

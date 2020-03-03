@@ -5,6 +5,8 @@ const {
   getSpeed,
   convertSpeed
 } = require('geolib');
+const rp = require('request-promise');
+const axios = require('axios');
 const AssignDriver = require('./../database/AssignDriver');
 
 // save locations
@@ -26,6 +28,7 @@ exports.saveLocations = (req, res, next) => {
       longitude: req.body.current_location.longitude,
       time: req.body.bus_time
     };
+    
     console.log(current_location);
 
     var pre_time = pre_location.time.split(":");
@@ -46,11 +49,32 @@ exports.saveLocations = (req, res, next) => {
     let bus_speed = distance_m / time_varience_s;
     let bus_speed_kmh = convertSpeed(bus_speed, 'kmh');
     // console.log(bus_speed_kmh);
+
+    // const api_key = '7568b071b962c8b0e643078145cd8bb0';
+    // const api_url = `api.openweathermap.org/data/2.5/weather?lat=${current_location.latitude}&lon=${current_location.longitude}&appid=${api_key}`;
+
+    // let weather = {
+    //     uri: `api.openweathermap.org/data/2.5/weather?lat=${current_location.latitude}&lon=${current_location.longitude}&appid=${api_key}`,
+    //     headers: {
+    //         'User-Agent': 'Request-Promise'
+    //     },
+    //     json: true
+    // };
+    
+    // rp(weather).then((result => {
+    //     console.log(JSON.parse(result));
+    // })).catch((error) => {
+    //     console.log('weather api call error');
+    // });
+
+    // let weather = getWeather(current_location.latitude, current_location.longitude, api_key);
+    // console.log(weather);
+
     Locations.saveLocation({
       bus_no: req.body.bus_no,
       distance: distance_km,
       current_location: req.body.current_location,
-      weather: req.body.weather,
+    //   weather: req.body.weather,
       road_condition: req.body.road_condition,
       bus_time: req.body.bus_time,
       speed_of_bus: bus_speed_kmh
@@ -130,6 +154,12 @@ exports.getLatestLocation = (req, res, next) => {
 
 // to get weather
 
-exports.getWeather = (req, res, next) => {
-
-};
+// function getWeather(lat, lon, key) {
+//     var url = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
+//     axios.get(url).then((response) => {
+//         let temp = response.data.main.temp;
+//         console.log("hey"+temp);
+//     }).catch(error => {
+//         console.log(error);
+//     });
+// };
