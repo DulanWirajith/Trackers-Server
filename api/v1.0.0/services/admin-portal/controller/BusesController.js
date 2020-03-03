@@ -36,8 +36,9 @@ exports.busUpdate = (req, res, next) => {
 
 // get one bus
 exports.getBus = (req, res, next) => {
+  console.log(req.params.bus_no);
     Buses.getBus({
-      bus_no : req.body.bus_no
+      bus_no : req.params.bus_no
     }).then((result) => {
       console.log(result);
       res.status(200).json({

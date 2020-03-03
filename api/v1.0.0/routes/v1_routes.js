@@ -31,14 +31,14 @@ router.get('/getalldrivers', driverController.getDrivers);
 router.post('/registerowner', ownerController.ownerRegistration);
 router.post('/ownerlogin', ownerController.ownerLogin);
 router.put('/ownerupdate', ownerController.ownerUpdate);
-router.get('/getowner', ownerController.getOwner);
+router.get('/getowner/:owner_mail', ownerController.getOwner);
 router.get('/getallowners', ownerController.getOwners);
 
 // Bus routes
 
 router.post('/busregistration', busesController.busRegistration);
 router.put('/updatebus', busesController.busUpdate);
-router.get('/getbus', busesController.getBus);
+router.get('/getbus/:bus_no', busesController.getBus);
 router.get('/getallbuses', busesController.getBuses);
 
 // Real time Bus Location routes

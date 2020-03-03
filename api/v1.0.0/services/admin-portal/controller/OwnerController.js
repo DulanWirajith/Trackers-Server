@@ -102,7 +102,7 @@ exports.ownerUpdate = (req, res, next) => {
 // get owner
 exports.getOwner = (req, res, next) => {
   Owner.getOwner({
-    owner_mail: req.body.owner_mail
+    owner_mail: req.params.owner_mail
   }).then((result) => {
     console.log(result);
     res.status(200).json({
