@@ -8,7 +8,7 @@
     "start": "nodemon server.js"
   },
   "engines": {
-    "node": "12.6.2"
+    "node": "12.x"
   },
   "keywords": [],
   "author": "We are Trackers",
