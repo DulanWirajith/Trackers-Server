@@ -3,7 +3,7 @@ const http = require('http');
 const app = require('./app');
 // const debug=require('debug')('node-angular');
 
-
+// MongoConnectionURL="mongodb://localhost:27017/TrackersDb" copied from .env file for safety
 // const port = process.env.PORT || 3000;
 // const server = http.createServer((req, res) => {
 //   res.end('This is me');
