@@ -10,6 +10,7 @@ const app = require('./app');
 // });
 
 // request and response serama handle wenne express haraha nisa server eka hadanawa express framework eka yodaagaththa app kiyana variable eken
+require('./secuirity/prod')(app);       // preparing for production
 const server = http.createServer(app);
 var io = app.io;
 io.attach(server);
